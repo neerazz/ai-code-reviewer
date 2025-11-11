@@ -1,18 +1,122 @@
 version: '3.8'
 
 services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: ai-reviewer-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ai_code_reviewer
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ai-reviewer-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: ai-reviewer-redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ai-reviewer-network
+
+  # FastAPI Backend
   backend:
     build:
       context: .
       dockerfile: ./backend/Dockerfile
+    container_name: ai-reviewer-backend
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/ai_code_reviewer
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ENVIRONMENT=development
+      - DEBUG=True
+    env_file:
+      - .env
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./config:/app/config
+      - ./logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - ai-reviewer-network
+    restart: unless-stopped
 
   frontend:
+  # Celery Worker (for background tasks)
+  celery-worker:
     build:
       context: .
       dockerfile: ./frontend/Dockerfile
+    container_name: ai-reviewer-celery
+    command: celery -A backend.workers.celery_app worker --loglevel=info
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/ai_code_reviewer
+      - REDIS_HOST=redis
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app/backend
+      - ./config:/app/config
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - ai-reviewer-network
+    restart: unless-stopped
+
+  # Flower (Celery monitoring)
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-reviewer-flower
+    command: celery -A backend.workers.celery_app flower --port=5555
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
     ports:
       - "3000:80"
+      - "5555:5555"
     depends_on:
       - backend
+      - redis
+      - celery-worker
+    networks:
+      - ai-reviewer-network
+    restart: unless-stopped
+
+networks:
+  ai-reviewer-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
