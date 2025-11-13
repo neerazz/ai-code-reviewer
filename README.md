@@ -2,6 +2,10 @@
 
 This project is an intelligent code review system that uses LLMs to provide context-aware code reviews, suggest optimizations, detect security vulnerabilities, and automate code migrations across different frameworks/versions.
 
+## Documentation
+
+For detailed documentation, please see the [GitHub Pages site](https://your-org.github.io/ai-code-reviewer/).
+
 ## Project Structure
 
 The project is organized as a monorepo with the following structure:
@@ -57,4 +61,4 @@ To get the project up and running, you will need to have Docker and Docker Compo
 
 ## Contributing
 
-Please see the `CONTRIBUTING.md` file for guidelines on how to contribute to this project.
+Please see the `CONTRIBUTING.md` file for guidelines on how to contribute to this project. To contribute to the documentation, please see the `docs/` directory.
