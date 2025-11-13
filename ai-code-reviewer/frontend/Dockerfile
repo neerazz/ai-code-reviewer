@@ -4,14 +4,11 @@ FROM node:18-alpine AS build
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY frontend/package.json ./
-# If package-lock.json exists, it should be copied too
-# COPY frontend/package-lock.json ./
-RUN npm install
-
 # Copy the rest of the frontend application code
 COPY frontend/ ./
+
+# Install dependencies
+RUN npm install
 
 # Build the application for production
 RUN npm run build

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CodeInputForm from './components/CodeInputForm';
 import ReviewResult from './components/ReviewResult';
+import { reviewCode } from './services/api';
 import './App.css';
 
 function App(): JSX.Element {
@@ -13,19 +14,7 @@ function App(): JSX.Element {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/review', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ code }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Something went wrong with the review request.');
-      }
-
-      const data = await response.json();
+      const data = await reviewCode(code);
       setReview(data);
     } catch (err) {
       if (err instanceof Error) {

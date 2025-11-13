@@ -8,17 +8,14 @@ The project is organized as a monorepo with the following structure:
 
 -   `ai-code-reviewer/`
     -   `backend/`: The FastAPI backend application.
-        -   `api/`: The API endpoints.
-            -   `routers/`: The API routers.
-            -   `schemas/`: The Pydantic schemas.
     -   `frontend/`: The React frontend application.
-        -   `src/`: The source code.
-            -   `components/`: The React components.
     -   `extensions/`: Browser and IDE extensions.
     -   `ml/`: Machine learning models and components.
     -   `infrastructure/`: Kubernetes and Terraform configurations.
     -   `docs/`: Project documentation.
     -   `docker-compose.yml`: A script to start both the frontend and backend services.
+
+For more information on the individual directories, please see the `README.md` file in each directory.
 
 ## Getting Started
 
@@ -60,12 +57,4 @@ To get the project up and running, you will need to have Docker and Docker Compo
 
 ## Contributing
 
-We welcome contributions to the AI-Powered Code Review & Migration Assistant! To contribute, please follow these steps:
-
-1.  **Fork the repository.**
-2.  **Create a new branch** for your feature or bug fix.
-3.  **Make your changes** and commit them with a descriptive message.
-4.  **Push your changes** to your forked repository.
-5.  **Create a pull request** to the main repository.
-
-We appreciate your contributions and will review your pull request as soon as possible.
+Please see the `CONTRIBUTING.md` file for guidelines on how to contribute to this project.
