@@ -3,16 +3,22 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ai-code-reviewer
-      dockerfile: ai-code-reviewer/backend/Dockerfile
+      context: ./ai-code-reviewer/backend
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./ai-code-reviewer/backend:/app
 
   frontend:
     build:
-      context: ai-code-reviewer
-      dockerfile: ai-code-reviewer/frontend/Dockerfile
+      context: ./ai-code-reviewer/frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:80"
     depends_on:
       - backend
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
