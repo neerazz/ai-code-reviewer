@@ -4,7 +4,7 @@ import ReviewResult from './components/ReviewResult';
 import { reviewCode } from './services/api';
 import './App.css';
 
-function App(): JSX.Element {
+function App() {
   const [code, setCode] = useState('');
   const [review, setReview] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
