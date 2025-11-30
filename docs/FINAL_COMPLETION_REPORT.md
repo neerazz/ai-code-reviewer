@@ -13,8 +13,8 @@ All requested tasks have been completed successfully. The AI Code Reviewer now h
 **File**: `.github/workflows/ci.yml`
 
 **Changes Made**:
-- ✅ Fixed paths from `backend/` to `ai-code-reviewer/backend/`
-- ✅ Fixed paths from `frontend/` to `ai-code-reviewer/frontend/`
+- ✅ Fixed paths from `backend/` to `src/backend/`
+- ✅ Fixed paths from `frontend/` to `src/frontend/`
 - ✅ Updated Python version to 3.11
 - ✅ Added caching for dependencies
 - ✅ Added flake8 linting
@@ -240,9 +240,9 @@ Complete directory documentation:
 ### ✅ 12. Docker Configuration
 
 **Verified**:
-- ✅ `docker-compose.yml` - Correct paths to `ai-code-reviewer/backend` and `ai-code-reviewer/frontend`
-- ✅ `ai-code-reviewer/backend/Dockerfile` - Working Python 3.11 setup
-- ✅ `ai-code-reviewer/frontend/Dockerfile` - Working Node.js multi-stage build
+- ✅ `docker-compose.yml` - Correct paths to `src/backend` and `src/frontend`
+- ✅ `src/backend/Dockerfile` - Working Python 3.11 setup
+- ✅ `src/frontend/Dockerfile` - Working Node.js multi-stage build
 - ✅ Volume mounts configured
 - ✅ Environment variables configured
 - ✅ Port mappings correct (8000, 3000)
@@ -336,7 +336,7 @@ $ python -c "from api.main import app; print('Success')"
 2. `GETTING_STARTED.md` - Comprehensive setup guide
 3. `API_KEYS.md` - API key acquisition guide
 4. `ARCHITECTURE.md` - Technical architecture
-5. `ai-code-reviewer/docs/PROJECT_STRUCTURE.md` - Directory documentation
+5. `docs/PROJECT_STRUCTURE.md` - Directory documentation
 6. Previous: `DEMO.md` - Live demo examples
 7. Previous: `COMPLETION_SUMMARY.md` - Initial completion summary
 

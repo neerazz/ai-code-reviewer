@@ -1260,7 +1260,7 @@ try {
 
 **Backend Dev Server**:
 ```bash
-cd ai-code-reviewer/backend
+cd src/backend
 source venv/bin/activate
 uvicorn api.main:app --reload --port 8000
 
@@ -1270,7 +1270,7 @@ uvicorn api.main:app --reload --port 8000
 
 **Frontend Dev Server**:
 ```bash
-cd ai-code-reviewer/frontend
+cd src/frontend
 npm start
 
 # Auto-reloads on file changes
@@ -1348,12 +1348,12 @@ docker-compose.yml
 Creates Network: ai-code-reviewer_default
     ↓
     ├─→ Container: backend
-    │   - Image: Built from ai-code-reviewer/backend/Dockerfile
+    │   - Image: Built from src/backend/Dockerfile
     │   - Port: 8000:8000
     │   - Env: Python 3.9, FastAPI, Uvicorn
     │
     └─→ Container: frontend
-        - Image: Built from ai-code-reviewer/frontend/Dockerfile
+        - Image: Built from src/frontend/Dockerfile
         - Port: 3000:80
         - Env: Node.js, React (production build)
         - Server: Nginx

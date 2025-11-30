@@ -19,13 +19,13 @@ All critical issues have been resolved and the AI Code Reviewer application is n
 **Previous Errors**:
 ```
 ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'backend/requirements.txt'
-npm error path: /home/runner/work/ai-code-reviewer/ai-code-reviewer/frontend/package.json
+npm error path: /home/runner/work/ai-code-reviewer/src/frontend/package.json
 ```
 
 **Fix Applied**:
 - Updated `.github/workflows/ci.yml` with correct paths:
-  - Backend working directory: `./ai-code-reviewer/backend`
-  - Frontend working directory: `./ai-code-reviewer/frontend`
+  - Backend working directory: `./src/backend`
+  - Frontend working directory: `./src/frontend`
 
 **File**: `.github/workflows/ci.yml` (Lines 12-15, 34-37)
 
@@ -48,9 +48,9 @@ The PostCSS plugin has moved to a separate package...
 - Removed explicit `JSX.Element` return type from `App.tsx`
 
 **Files Modified**:
-- `ai-code-reviewer/frontend/package.json`
-- `ai-code-reviewer/frontend/package-lock.json`
-- `ai-code-reviewer/frontend/src/App.tsx`
+- `src/frontend/package.json`
+- `src/frontend/package-lock.json`
+- `src/frontend/src/App.tsx`
 
 **Build Result**: ✅ **SUCCESS**
 ```
@@ -411,7 +411,7 @@ The static code analyzer successfully detects:
 ### GitHub Actions Workflows
 
 1. **`.github/workflows/ci.yml`**
-   - ✅ Fixed paths to `ai-code-reviewer/backend` and `ai-code-reviewer/frontend`
+   - ✅ Fixed paths to `src/backend` and `src/frontend`
    - ✅ Backend: Python linting, tests
    - ✅ Frontend: npm build, tests
    - ✅ Docker image build testing
@@ -508,9 +508,9 @@ The static code analyzer successfully detects:
 1. `TESTING_VERIFICATION_REPORT.md` - This comprehensive testing report
 
 ### Modified Files (3)
-1. `ai-code-reviewer/frontend/package.json` - Downgraded dependencies
-2. `ai-code-reviewer/frontend/package-lock.json` - Updated lock file
-3. `ai-code-reviewer/frontend/src/App.tsx` - Removed JSX.Element type
+1. `src/frontend/package.json` - Downgraded dependencies
+2. `src/frontend/package-lock.json` - Updated lock file
+3. `src/frontend/src/App.tsx` - Removed JSX.Element type
 
 ### Total Files in Project
 - **Backend**: 15+ Python files

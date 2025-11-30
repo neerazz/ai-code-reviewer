@@ -111,7 +111,7 @@ git checkout -b fix/your-bugfix-name
 **Backend:**
 
 ```bash
-cd ai-code-reviewer/backend
+cd src/backend
 
 # Create virtual environment
 python -m venv venv
@@ -130,7 +130,7 @@ PYTHONPATH=. uvicorn api.main:app --reload
 **Frontend:**
 
 ```bash
-cd ai-code-reviewer/frontend
+cd src/frontend
 
 # Install dependencies
 npm install
@@ -152,33 +152,25 @@ npm start
 
 ```
 ai-code-reviewer/
-├── ai-code-reviewer/
-│   ├── backend/              # FastAPI backend
-│   │   ├── api/             # API routes and schemas
-│   │   │   ├── routers/     # API endpoint routers
-│   │   │   └── schemas/     # Pydantic models
-│   │   ├── services/        # Business logic
-│   │   │   ├── code_analyzer.py    # Static analysis
-│   │   │   └── llm_service.py      # AI integration
-│   │   ├── config/          # Configuration
-│   │   └── utils/           # Utility functions
-│   │
-│   ├── frontend/            # React frontend
-│   │   ├── src/
-│   │   │   ├── components/  # React components
-│   │   │   ├── services/    # API client
-│   │   │   └── App.tsx      # Main component
-│   │   └── package.json
-│   │
-│   ├── ml/                  # ML models (future)
-│   ├── extensions/          # Browser/IDE extensions (future)
-│   ├── infrastructure/      # K8s, Terraform
-│   └── docs/               # Documentation
-│
-├── .github/workflows/       # CI/CD pipelines
-├── GETTING_STARTED.md      # Setup guide
-├── API_KEYS.md            # API key documentation
-└── README.md              # Main documentation
+├── AGENTS.md                 # Working agreement
+├── config/                   # Shared config artifacts
+├── docs/                     # Architecture, guides, reports, screenshots
+├── src/
+│   ├── backend/              # FastAPI backend (api, services, config, utils)
+│   ├── frontend/             # React frontend (components, services)
+│   ├── ml/                   # ML models (future)
+│   ├── extensions/           # Browser/IDE extensions (future)
+│   └── infrastructure/       # K8s, Terraform (future)
+├── tests/                    # Root-level tests
+├── .github/workflows/        # CI/CD pipelines
+├── Dockerfile                # Backend/tooling image
+├── docker-compose.yml        # Local orchestration
+├── requirements.txt          # Python dependencies
+├── requirements-dev.txt      # Dev/test dependencies
+├── Makefile                  # Helper tasks
+├── setup.py                  # Package metadata
+├── .env.example              # Environment template
+└── README.md                 # Main documentation
 ```
 
 ### Key Directories Explained
@@ -347,11 +339,11 @@ section for common installation issues.
 2. **Test your changes:**
    ```bash
    # Backend tests
-   cd ai-code-reviewer/backend
+   cd src/backend
    pytest
 
    # Frontend tests
-   cd ai-code-reviewer/frontend
+   cd src/frontend
    npm test
 
    # Manual testing
@@ -426,7 +418,7 @@ Add screenshots here
 ### Backend Tests
 
 ```python
-# ai-code-reviewer/backend/tests/test_code_analyzer.py
+# src/backend/tests/test_code_analyzer.py
 
 import pytest
 from services.code_analyzer import CodeAnalyzer
@@ -457,7 +449,7 @@ pytest --cov=. --cov-report=html  # With coverage
 ### Frontend Tests
 
 ```typescript
-// ai-code-reviewer/frontend/src/components/CodeInput.test.tsx
+// src/frontend/src/components/CodeInput.test.tsx
 
 import { render, screen, fireEvent } from '@testing-library/react';
 import CodeInput from './CodeInput';

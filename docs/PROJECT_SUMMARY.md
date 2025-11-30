@@ -70,17 +70,21 @@ ai-code-reviewer/
 │   ├── test_code_analyzer.py      # Analyzer tests
 │   ├── test_api.py                # API endpoint tests
 │   └── conftest.py                # Test configuration
-├── docs/
-│   ├── API.md                     # API documentation
-│   └── DEPLOYMENT.md              # Deployment guide
-├── scripts/
-│   ├── setup.sh                   # Linux/Mac setup
-│   └── setup.bat                  # Windows setup
+├── docs/                          # Documentation (architecture, guides, reports)
+│   └── screenshots/               # Screenshot guidance and assets
+├── config/
+│   └── alembic.ini                # Placeholder migration config
+├── src/
+│   ├── backend/                   # FastAPI backend (api, services, config, utils)
+│   ├── frontend/                  # React frontend (components, services)
+│   ├── extensions/                # Future IDE/browser extensions
+│   ├── infrastructure/            # Future infra tooling
+│   └── ml/                        # Future ML assets
+├── tests/                         # Root-level tests
 ├── docker-compose.yml             # Docker orchestration
-├── Dockerfile                     # Production image
+├── Dockerfile                     # Backend/tooling image
 ├── requirements.txt               # Python dependencies
 ├── requirements-dev.txt           # Development dependencies
-├── alembic.ini                    # Database migrations
 ├── Makefile                       # Common commands
 ├── README.md                      # Main documentation
 ├── QUICKSTART.md                  # Quick start guide

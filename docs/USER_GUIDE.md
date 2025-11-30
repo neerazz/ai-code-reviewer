@@ -242,7 +242,7 @@ cd ai-code-reviewer
 
 ```bash
 # Navigate to backend directory
-cd ai-code-reviewer/backend
+cd src/backend
 
 # Create virtual environment
 python -m venv venv
@@ -261,7 +261,7 @@ pip install -r requirements.txt
 
 ```bash
 # Navigate to frontend directory (from project root)
-cd ai-code-reviewer/frontend
+cd src/frontend
 
 # Install dependencies
 npm install
@@ -283,14 +283,14 @@ Open **two terminal windows**:
 
 **Terminal 1 - Backend**:
 ```bash
-cd ai-code-reviewer/backend
+cd src/backend
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 **Terminal 2 - Frontend**:
 ```bash
-cd ai-code-reviewer/frontend
+cd src/frontend
 npm start
 ```
 

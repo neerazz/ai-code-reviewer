@@ -21,7 +21,6 @@ chromadb==0.4.22
 
 # Code Analysis
 tree-sitter==0.21.0
-ast-grep-py==0.14.4
 
 # GitHub/GitLab Integration
 PyGithub==2.1.1

@@ -2,9 +2,10 @@
 Configuration management for the AI Code Reviewer application.
 Handles environment variables and application settings.
 """
-from typing import Optional
-from pydantic_settings import BaseSettings
 from functools import lru_cache
+from typing import Optional
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -41,9 +42,7 @@ class Settings(BaseSettings):
     enable_metrics: bool = True
     log_level: str = "INFO"
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
+    model_config = SettingsConfigDict(env_file=".env", case_sensitive=False)
 
 
 @lru_cache()

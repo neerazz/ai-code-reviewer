@@ -97,7 +97,7 @@ If you're not using Docker, follow these steps:
 
 ```bash
 # Navigate to backend directory
-cd ai-code-reviewer/backend
+cd src/backend
 
 # Create virtual environment (recommended)
 python -m venv venv
@@ -117,7 +117,7 @@ pip install -r requirements.txt
 ```bash
 # Open a new terminal
 # Navigate to frontend directory
-cd ai-code-reviewer/frontend
+cd src/frontend
 
 # Install dependencies
 npm install
@@ -203,7 +203,7 @@ docker-compose logs -f frontend
 **Terminal 1 - Backend:**
 
 ```bash
-cd ai-code-reviewer/backend
+cd src/backend
 
 # Activate virtual environment if you created one
 source venv/bin/activate  # macOS/Linux
@@ -223,7 +223,7 @@ INFO:     Application startup complete.
 **Terminal 2 - Frontend:**
 
 ```bash
-cd ai-code-reviewer/frontend
+cd src/frontend
 
 # Start the development server
 npm start
@@ -318,7 +318,7 @@ docker system prune
 
 ```bash
 # Ensure you're in the backend directory
-cd ai-code-reviewer/backend
+cd src/backend
 
 # Reinstall dependencies
 pip install -r requirements.txt
@@ -391,11 +391,11 @@ docker-compose logs -f            # View logs
 docker-compose restart            # Restart services
 
 # Backend (Manual)
-cd ai-code-reviewer/backend
+cd src/backend
 PYTHONPATH=. uvicorn api.main:app --reload
 
 # Frontend (Manual)
-cd ai-code-reviewer/frontend
+cd src/frontend
 npm start
 
 # Health Checks

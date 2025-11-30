@@ -65,7 +65,7 @@ git remote add upstream https://github.com/neerazz/ai-code-reviewer.git
 
 ```bash
 # Navigate to backend directory
-cd ai-code-reviewer/backend
+cd src/backend
 
 # Create virtual environment
 python -m venv venv
@@ -102,7 +102,7 @@ LLM_PROVIDER=anthropic
 
 ```bash
 # Navigate to frontend directory (from project root)
-cd ai-code-reviewer/frontend
+cd src/frontend
 
 # Install dependencies
 npm install
@@ -115,14 +115,14 @@ npm install
 
 **Terminal 1 - Start Backend**:
 ```bash
-cd ai-code-reviewer/backend
+cd src/backend
 source venv/bin/activate
 uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 **Terminal 2 - Start Frontend**:
 ```bash
-cd ai-code-reviewer/frontend
+cd src/frontend
 npm start
 ```
 
@@ -175,71 +175,26 @@ Create `.vscode/settings.json`:
 
 ```
 ai-code-reviewer/
-├── .github/
-│   └── workflows/
-│       ├── ci.yml              # CI/CD pipeline
-│       └── pages.yml           # GitHub Pages deployment
-│
-├── ai-code-reviewer/
-│   ├── backend/                # Python FastAPI backend
-│   │   ├── api/
-│   │   │   ├── main.py         # FastAPI application entry
-│   │   │   ├── routers/
-│   │   │   │   └── review.py   # Code review endpoints
-│   │   │   └── schemas/
-│   │   │       └── review.py   # Pydantic models
-│   │   ├── config/
-│   │   │   ├── __init__.py
-│   │   │   └── settings.py     # Configuration management
-│   │   ├── services/
-│   │   │   ├── code_analyzer.py      # Static analysis engine
-│   │   │   ├── llm_service.py        # AI integration layer
-│   │   │   └── migration_engine.py   # [Future] Code migration
-│   │   ├── utils/
-│   │   │   ├── __init__.py
-│   │   │   └── logger.py       # Logging utilities
-│   │   ├── Dockerfile          # Backend container config
-│   │   ├── requirements.txt    # Python dependencies
-│   │   └── __init__.py
-│   │
-│   ├── frontend/               # React TypeScript frontend
-│   │   ├── public/
-│   │   │   ├── index.html      # HTML template
-│   │   │   └── manifest.json   # PWA manifest
-│   │   ├── src/
-│   │   │   ├── components/
-│   │   │   │   ├── CodeInputForm.tsx   # Code input component
-│   │   │   │   └── ReviewResult.tsx    # Results display component
-│   │   │   ├── services/
-│   │   │   │   └── api.ts      # API client
-│   │   │   ├── App.tsx         # Main application component
-│   │   │   ├── App.css         # Application styles
-│   │   │   ├── index.tsx       # React entry point
-│   │   │   ├── index.css       # Global styles
-│   │   │   └── App.test.tsx    # Application tests
-│   │   ├── Dockerfile          # Frontend container config
-│   │   ├── package.json        # Node dependencies
-│   │   ├── tsconfig.json       # TypeScript configuration
-│   │   ├── tailwind.config.js  # Tailwind CSS config
-│   │   └── postcss.config.js   # PostCSS config
-│   │
-│   ├── docs/                   # Documentation
-│   │   ├── PROJECT_STRUCTURE.md
-│   │   └── README.md
-│   │
-│   ├── extensions/             # [Future] IDE extensions
-│   ├── infrastructure/         # [Future] K8s configs
-│   └── ml/                     # [Future] ML models
-│
-├── docker-compose.yml          # Multi-container orchestration
-├── README.md                   # Project overview
-├── USER_GUIDE.md              # User documentation
-├── DEVELOPER_GUIDE.md         # This file
-├── SYSTEM_DESIGN.md           # Architecture documentation
-├── CONTRIBUTING.md            # Contribution guidelines
-├── API_KEYS.md                # API key setup guide
-├── ARCHITECTURE.md            # System architecture
-└── GETTING_STARTED.md         # Quick start guide
+├── AGENTS.md                 # Working agreement
+├── config/                   # Shared config artifacts (e.g., alembic.ini)
+├── docs/                     # Architecture, guides, reports, screenshots
+├── src/
+│   ├── backend/              # FastAPI backend (api, services, config, utils)
+│   ├── frontend/             # React frontend (components, services)
+│   ├── extensions/           # [Future] IDE/browser extensions
+│   ├── infrastructure/       # [Future] infra configs
+│   └── ml/                   # [Future] ML models
+├── tests/                    # Root-level tests
+├── .github/                  # CI/CD workflows
+├── Dockerfile                # Backend/tooling image
+├── docker-compose.yml        # Local orchestration
+├── .env.example              # Environment template
+├── requirements.txt          # Base dependencies
+├── requirements-dev.txt      # Dev dependencies
+├── Makefile                  # Build/test helpers
+├── setup.py                  # Package metadata
+├── README.md                 # Project overview
+└── LICENSE                   # MIT License
 ```
 
 ### Module Responsibilities

@@ -283,7 +283,7 @@ Currently running in **mock mode** (no API key required). To enable full AI-powe
 
 2. Restart the backend:
    ```bash
-   cd ai-code-reviewer/backend
+   cd src/backend
    PYTHONPATH=. uvicorn api.main:app --reload
    ```
 

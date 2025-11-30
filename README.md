@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![React 19](https://img.shields.io/badge/react-19.2.0-blue.svg)](https://react.dev/)
+[![React 18](https://img.shields.io/badge/react-18.2.0-blue.svg)](https://react.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-green.svg)](https://fastapi.tiangolo.com/)
 
 An intelligent code review system that uses AI and static analysis to provide comprehensive code reviews, detect security vulnerabilities, and suggest optimizations.
@@ -15,7 +15,7 @@ An intelligent code review system that uses AI and static analysis to provide co
 - 💻 **Frontend UI**: [http://localhost:3000](http://localhost:3000)
 - 📚 **API Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-See [DEMO.md](./DEMO.md) for detailed examples and screenshots.
+See [docs/DEMO.md](docs/DEMO.md) for detailed examples and screenshots.
 
 ## ✨ Features
 
@@ -47,31 +47,27 @@ See [DEMO.md](./DEMO.md) for detailed examples and screenshots.
    cd ai-code-reviewer
    ```
 
-2. **Set up the backend:**
+2. **Create `.env` file** (optional - works without API keys in mock mode):
    ```bash
-   cd ai-code-reviewer/backend
-   pip install -r requirements.txt
-   ```
-
-3. **Create `.env` file** (optional - works without API keys in mock mode):
-   ```bash
-   cp ../.env.example ../.env
+   cp .env.example .env
    # Edit .env and add your API keys if you want AI-powered analysis
    ```
 
-4. **Start the backend server:**
+3. **Set up the backend:**
    ```bash
+   cd src/backend
+   pip install -r requirements.txt
    PYTHONPATH=. uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
    ```
 
-5. **In a new terminal, set up the frontend:**
+4. **In a new terminal, set up the frontend:**
    ```bash
-   cd ai-code-reviewer/frontend
+   cd src/frontend
    npm install
    npm start
    ```
 
-6. **Access the application:**
+5. **Access the application:**
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:8000
    - API Documentation: http://localhost:8000/docs
@@ -127,33 +123,23 @@ curl -X POST http://localhost:8000/review \
 
 ```
 ai-code-reviewer/
-├── ai-code-reviewer/
-│   ├── backend/              # FastAPI backend
-│   │   ├── api/             # API routes and schemas
-│   │   │   ├── routers/     # API endpoints
-│   │   │   └── schemas/     # Pydantic models
-│   │   ├── services/        # Business logic
-│   │   │   ├── code_analyzer.py    # Static analysis
-│   │   │   └── llm_service.py      # AI integration
-│   │   ├── config/          # Configuration management
-│   │   └── utils/           # Utilities and helpers
-│   │
-│   ├── frontend/            # React frontend
-│   │   ├── src/
-│   │   │   ├── components/  # React components
-│   │   │   ├── services/    # API client
-│   │   │   └── App.tsx      # Main application
-│   │   └── package.json
-│   │
-│   ├── ml/                  # ML models (future)
-│   ├── extensions/          # Browser/IDE extensions (future)
-│   ├── infrastructure/      # K8s, Terraform configs
-│   └── docs/               # Documentation
-│
-├── docker-compose.yml       # Docker orchestration
-├── .env.example            # Environment variables template
-├── DEMO.md                 # Live demo documentation
-└── README.md              # This file
+├── AGENTS.md                 # Repo working agreement
+├── config/                   # Shared configuration artifacts (e.g., alembic.ini)
+├── docs/                     # Documentation (architecture, guides, reports)
+├── src/
+│   ├── backend/              # FastAPI backend (api, services, config, utils)
+│   ├── frontend/             # React frontend (components, services)
+│   ├── extensions/           # Future browser/IDE extensions
+│   ├── infrastructure/       # Future infra tooling
+│   └── ml/                   # Future ML assets
+├── tests/                    # Root-level tests mirroring src/
+├── Dockerfile                # Backend + tooling container
+├── docker-compose.yml        # Local orchestration
+├── Makefile                  # Common tasks
+├── requirements.txt          # Python deps
+├── requirements-dev.txt      # Dev/test deps
+├── setup.py                  # Package metadata
+└── README.md                 # This file
 ```
 
 ## 🔧 Configuration
@@ -227,7 +213,7 @@ curl -X POST http://localhost:8000/review \
 ### Test the Frontend
 
 ```bash
-cd ai-code-reviewer/frontend
+cd src/frontend
 npm test
 ```
 
@@ -251,7 +237,7 @@ docker-compose down
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+Contributions are welcome! Please see [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
 
 ## 📝 License
 

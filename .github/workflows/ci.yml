@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./ai-code-reviewer/backend
+        working-directory: ./src/backend
 
     steps:
     - name: Checkout code
@@ -27,7 +27,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('ai-code-reviewer/backend/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('src/backend/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./ai-code-reviewer/frontend
+        working-directory: ./src/frontend
 
     steps:
     - name: Checkout code
@@ -65,7 +65,7 @@ jobs:
       with:
         node-version: 18
         cache: 'npm'
-        cache-dependency-path: ai-code-reviewer/frontend/package-lock.json
+        cache-dependency-path: src/frontend/package-lock.json
 
     - name: Install dependencies
       run: npm ci
@@ -98,8 +98,8 @@ jobs:
     - name: Build backend image
       uses: docker/build-push-action@v4
       with:
-        context: ./ai-code-reviewer/backend
-        file: ./ai-code-reviewer/backend/Dockerfile
+        context: ./src/backend
+        file: ./src/backend/Dockerfile
         push: false
         tags: ai-code-reviewer-backend:latest
         cache-from: type=gha
@@ -108,8 +108,8 @@ jobs:
     - name: Build frontend image
       uses: docker/build-push-action@v4
       with:
-        context: ./ai-code-reviewer/frontend
-        file: ./ai-code-reviewer/frontend/Dockerfile
+        context: ./src/frontend
+        file: ./src/frontend/Dockerfile
         push: false
         tags: ai-code-reviewer-frontend:latest
         cache-from: type=gha
